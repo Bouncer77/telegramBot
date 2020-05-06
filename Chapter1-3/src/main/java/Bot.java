@@ -5,12 +5,16 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class Bot extends TelegramLongPollingBot {
 
+    // При получение сообщения от пользователя
     public void onUpdateReceived(Update update) {
         update.getUpdateId();
 
         String chat_id = String.valueOf(update.getMessage().getChatId());
+
+        // Класс для отправки сообщений
         SendMessage sendMessage = new SendMessage().setChatId(chat_id);
 
+        // Если пользователь отправил "Привет", то бот ответит "Привет, Дружище"
         if(update.getMessage().getText().equals("Привет")){
             sendMessage.setText("Привет дружище");
             try {
@@ -22,11 +26,13 @@ public class Bot extends TelegramLongPollingBot {
 
     }
 
+    // Получение имени бота
     public String getBotUsername() {
-        return null;
+        return "BananaSaleBot";
     }
 
+    // Получение токена бота
     public String getBotToken() {
-        return null;
+        return "1197305015:AAGyVnKxsCHOzW-SDLep2xnCgtTUTkqEqCs";
     }
 }
